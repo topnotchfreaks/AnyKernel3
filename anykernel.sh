@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=by belowzeroiq @ github
+kernel.string=
 do.devicecheck=1
 do.modules=0
 do.systemless=0
@@ -45,8 +45,6 @@ choose_kernel() {
   ui_print "  Volume Bawah: versi CLO"
   ui_print " "
   ui_print "Input: "
-  ui_print " "
-  ui_print " "
 
   while true; do
     input=$(getevent -qlc 1 2>/dev/null | grep -E "KEY_VOLUME(UP|DOWN)")
