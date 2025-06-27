@@ -14,11 +14,11 @@
 ║                                                     ║
 ╠═════════════════════════════════════════════════════╣
 ║                                                     ║
-║  📦 Package Contents:                                ║
+║     Package Contents:                               ║
 ║     • YASK-GKI Kernel (Google)                      ║
 ║     • YASK-CLO Kernel (CodeLinaro)                  ║
 ║                                                     ║
-║  ⚡ Features:                                        ║
+║     Features:                                       ║
 ║     • -O2 Optimization                              ║
 ║     • 300hz Tickrate                                ║
 ║     • LZ4 as default ZRAM compression               ║
@@ -27,7 +27,7 @@
 ║     • Latest SukiSU-Ultra drivers + KPM             ║
 ║     • Latest SUSFS version                          ║
 ║                                                     ║
-║  ⚠️ Please ensure:                                  ║
+║     Please ensure:                                  ║
 ║     • Your device is compatible                     ║
 ║     • You have a backup of your current kernel      ║
 ║                                                     ║
