@@ -22,6 +22,7 @@
 ║     • -O2 Optimization                              ║
 ║     • 300hz Tickrate                                ║
 ║     • Extra TCP Congestion                          ║
+║     • LZ4 as default ZRAM compression               ║
 ║     • Greenforce Clang 21                           ║
 ║     • LineageOS disguise                            ║
 ║     • Latest SukiSU-Ultra drivers + KPM             ║
