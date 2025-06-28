@@ -15,8 +15,8 @@
 ╠═════════════════════════════════════════════════════╣
 ║                                                     ║
 ║     Package Contents:                               ║
-║     • YASK-GKI Kernel (Google GKI)                  ║
-║     • YASK-CLO Kernel (CodeLinaro GKI)              ║
+║     • YASK-GKI Kernel (VOLUME ↑)                    ║
+║     • YASK-CLO Kernel (VOLUME ↓)                    ║
 ║                                                     ║
 ║     Features:                                       ║
 ║     • -O2 Optimization                              ║
