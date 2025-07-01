@@ -15,12 +15,11 @@
 ╠═════════════════════════════════════════════════════╣
 ║                                                     ║
 ║     Kernel version:                                 ║
-║     • YASK-GKI Kernel (VOLUME ↑)                    ║
-║     • YASK-CLO Kernel (VOLUME ↓)                    ║
+║     • YASK-GKI Kernel (android13-5.15-lts)          ║
+║     • YASK-CLO Kernel (kernel.lnx.5.15.r1-rel)      ║
 ║                                                     ║
 ║     Features:                                       ║
 ║     • -O2 Optimization                              ║
-║     • 300hz Tickrate                                ║
 ║     • Extra TCP Congestion                          ║
 ║     • LZ4 as default ZRAM compression               ║
 ║     • Greenforce Clang 21                           ║
