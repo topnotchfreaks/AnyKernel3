@@ -16,12 +16,11 @@
 ║                                                     ║
 ║     Kernel version:                                 ║
 ║     • YASK-GKI Kernel (android13-5.15-lts)          ║
-║     • YASK-CLO Kernel (kernel.lnx.5.15.r1-rel)      ║
+║     • YASK-CLO Kernel (kernel.lnx.5.15.r1/16-rel)   ║
 ║                                                     ║
 ║     Features:                                       ║
 ║     • -O2 Optimization                              ║
 ║     • Extra TCP Congestion                          ║
-║     • LZ4 as default ZRAM compression               ║
 ║     • Greenforce Clang 21                           ║
 ║     • LineageOS disguise                            ║
 ║     • Latest SukiSU-Ultra drivers + KPM             ║
