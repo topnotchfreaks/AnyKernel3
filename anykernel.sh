@@ -28,7 +28,7 @@ ramdisk_compression=auto
 patch_vbmeta_flag=auto
 no_magisk_check=1
 
-# import functions/variables and setup patching - see for reference (DO NOT REMOVE)
+# import functions/variables and setup patching
 . tools/ak3-core.sh
 
 # Kernel selection function
@@ -37,15 +37,14 @@ choose_kernel() {
   ui_print "Kernel Version Selection:"
   ui_print " "
   ui_print "  -EN"
-  ui_print "  Volume Up: non-KSU version"
-  ui_print "  Volume Down: KSU version"
+  ui_print "  Volume Up: YASK-GKI"
+  ui_print "  Volume Down: YASK-CLO"
   ui_print " "
   ui_print "  -ID"
-  ui_print "  Volume Atas: versi non-KSU"
-  ui_print "  Volume Bawah: versi KSU"
+  ui_print "  Volume Atas: YASK-GKI"
+  ui_print "  Volume Bawah: YASK-CLO"
   ui_print " "
   ui_print "Input: "
-  ui_print " "
   ui_print " "
 
   while true; do
@@ -63,40 +62,39 @@ choose_kernel() {
 }
 
 # Handle kernel selection
-if [ -f "$AKHOME/Image.ksu" ] && [ -f "$AKHOME/Image.noksu" ]; then
+if [ -f "$AKHOME/Image.gki" ] && [ -f "$AKHOME/Image.clo" ]; then
   choose_kernel
   case $? in
     1)
       ui_print " "
-      ui_print "Selected: non-KSU Kernel"
-      mv -f "$AKHOME/Image.noksu" "$AKHOME/Image"
+      ui_print "Selected: YASK-GKI"
+      mv -f "$AKHOME/Image.gki" "$AKHOME/Image"
       ;;
     2)
       ui_print " "
-      ui_print "Selected: KSU Kernel"
-      mv -f "$AKHOME/Image.ksu" "$AKHOME/Image"
+      ui_print "Selected: YASK-CLO"
+      mv -f "$AKHOME/Image.clo" "$AKHOME/Image"
       ;;
   esac
+elif [ -f "$AKHOME/Image.gki" ]; then
+  ui_print " "
+  ui_print "Only YASK-GKI found, flashing it"
+  mv -f "$AKHOME/Image.gki" "$AKHOME/Image"
+elif [ -f "$AKHOME/Image.clo" ]; then
+  ui_print " "
+  ui_print "Only YASK-CLO found, flashing it"
+  mv -f "$AKHOME/Image.clo" "$AKHOME/Image"
 elif [ -f "$AKHOME/Image" ]; then
   ui_print " "
-  ui_print "Single image kernel found, flashing it"
-  mv -f "$AKHOME/Image.ksu" "$AKHOME/Image"
-elif [ -f "$AKHOME/Image.ksu" ]; then
-  ui_print " "
-  ui_print "Only KernelSU version found, flashing it"
-  mv -f "$AKHOME/Image.ksu" "$AKHOME/Image"
-elif [ -f "$AKHOME/Image.noksu" ]; then
-  ui_print " "
-  ui_print "Only Standard version found, flashing it"
-  mv -f "$AKHOME/Image.noksu" "$AKHOME/Image"
+  ui_print "Single generic Image found, flashing it"
 fi
 
 # boot install
 if [ -L "/dev/block/bootdevice/by-name/init_boot_a" -o -L "/dev/block/by-name/init_boot_a" ]; then
-    split_boot # for devices with init_boot ramdisk
-    flash_boot # for devices with init_boot ramdisk
+    split_boot
+    flash_boot
 else
-    dump_boot # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
-    write_boot # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+    dump_boot
+    write_boot
 fi
 ## end boot install
