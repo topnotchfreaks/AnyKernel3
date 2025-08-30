@@ -37,15 +37,10 @@ choose_kernel() {
   ui_print " "
   ui_print "Kernel Version Selection:"
   ui_print " "
-  ui_print "  -EN"
-  ui_print "  Volume Up: YASK-GKI"
-  ui_print "  Volume Down: YASK-CLO"
+  ui_print "  Volume + : YASK-GKI"
+  ui_print "  Volume - : YASK-CLO"
   ui_print " "
-  ui_print "  -ID"
-  ui_print "  Volume Atas: YASK-GKI"
-  ui_print "  Volume Bawah: YASK-CLO"
-  ui_print " "
-  ui_print "Input: "
+  ui_print "Waiting..."
   ui_print " "
 
   while true; do
