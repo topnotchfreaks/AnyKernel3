@@ -15,6 +15,7 @@ device.name2=tapas
 device.name3=sapphiren
 device.name4=sapphire
 device.name5=xun
+device.name6=creek
 supported.versions=13-16
 supported.patchlevels=
 supported.vendorpatchlevels=
