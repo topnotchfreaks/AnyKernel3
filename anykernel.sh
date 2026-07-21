@@ -49,10 +49,11 @@ choose_kernel_type() {
   ui_print "Kernel Type:"
   ui_print "  Volume + : GKI"
   ui_print "  Volume - : CLO"
+  ui_print "  Power : Exit"
   ui_print " "
   
   while true; do
-    input=$(timeout 30 getevent -qlc 1 2>/dev/null | grep -E "KEY_VOLUME(UP|DOWN)")
+    input=$(timeout 30 getevent -qlc 1 2>/dev/null | grep -E "KEY_(VOLUMEUP|VOLUMEDOWN|POWER)")
     case "$input" in
       *KEY_VOLUMEUP*) 
         clear_input
@@ -60,6 +61,10 @@ choose_kernel_type() {
       *KEY_VOLUMEDOWN*) 
         clear_input
         return 2 ;;
+      *KEY_POWER*)
+        clear_input
+        ui_print "Cancelled kernel selection."
+        return 0 ;;
     esac
     sleep 0.1
   done
@@ -72,10 +77,11 @@ choose_ksu() {
   ui_print "KernelSU Support:"
   ui_print "  Volume + : With KSU"
   ui_print "  Volume - : Without KSU"
+  ui_print "  Power : Exit"
   ui_print " "
   
   while true; do
-    input=$(timeout 30 getevent -qlc 1 2>/dev/null | grep -E "KEY_VOLUME(UP|DOWN)")
+    input=$(timeout 30 getevent -qlc 1 2>/dev/null | grep -E "KEY_(VOLUMEUP|VOLUMEDOWN|POWER)")
     case "$input" in
       *KEY_VOLUMEUP*) 
         clear_input
@@ -83,6 +89,10 @@ choose_ksu() {
       *KEY_VOLUMEDOWN*) 
         clear_input
         return 2 ;;
+      *KEY_POWER*)
+        clear_input
+        ui_print "Cancelled kernel selection."
+        return 0 ;;
     esac
     sleep 0.1
   done
@@ -90,25 +100,45 @@ choose_ksu() {
 
 # Handle selection
 choose_kernel_type
-if [ $? -eq 1 ]; then
-  kernel_type="gki"
-  ui_print "Selected: GKI"
-else
-  kernel_type="clo"
-  ui_print "Selected: CLO"
-fi
+selection_status=$?
+case "$selection_status" in
+  1)
+    kernel_type="gki"
+    ui_print "Selected: GKI"
+    ;;
+  2)
+    kernel_type="clo"
+    ui_print "Selected: CLO"
+    ;;
+  0)
+    abort "Kernel installation cancelled by user."
+    ;;
+  *)
+    abort "Invalid kernel selection."
+    ;;
+esac
 
 # Add a brief pause between selections
 sleep 1
 
 choose_ksu
-if [ $? -eq 1 ]; then
-  ksu_type="ksu"
-  ui_print "Selected: With KSU"
-else
-  ksu_type="noksu"
-  ui_print "Selected: Without KSU"
-fi
+selection_status=$?
+case "$selection_status" in
+  1)
+    ksu_type="ksu"
+    ui_print "Selected: With KSU"
+    ;;
+  2)
+    ksu_type="noksu"
+    ui_print "Selected: Without KSU"
+    ;;
+  0)
+    abort "Kernel installation cancelled by user."
+    ;;
+  *)
+    abort "Invalid KernelSU selection."
+    ;;
+esac
 
 # Move selected kernel
 selected_kernel="Image.${kernel_type}.${ksu_type}"
